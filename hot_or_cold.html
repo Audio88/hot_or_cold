@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<body>
+<script>
+function newgame(){
+	randomNum = Math.round(Math.random() * 100);
+	guess = undefined;
+	guesslist = [];
+	console.log('A new game has been started')
+}
+
+function warmerorcolder(){
+	var currentguess = guesslist[guesslist.length-1];
+	var previousguess = guesslist[guesslist.length-2];
+	if (guesslist.length > 1){
+		if (Math.abs(previousguess-randomNum) > Math.abs(currentguess-randomNum)){
+			console.log('You\'re getting warmer!');
+		}
+		else {
+			console.log('You\'re getting colder!');
+		}
+	}
+	else {}
+}
+
+function submit(guess){
+	guesslist.push(guess);
+	console.log(guesslist);
+	if (guesslist.length > 1){
+		console.log('You\'ve guessed ' + guesslist.length + ' times');
+	}
+	else {
+		console.log('You\'ve guessed ' + guesslist.length + ' time');
+	}
+    if(guess === randomNum){
+    	console.log ('you won! congratulations!!');
+    	newgame();
+    }
+    else if(Math.abs(randomNum-guess)>=50){
+    	console.log('You\'re ice cold');
+    	warmerorcolder();
+    }
+    else if(Math.abs(randomNum-guess)<50 && Math.abs(randomNum-guess)>=20){
+    	console.log('You\'re warm');
+    	warmerorcolder();
+    }
+   	else if(Math.abs(randomNum-guess)<20 && Math.abs(randomNum-guess)>=5){
+    	console.log('You\'re hot');
+    	warmerorcolder();
+    }
+   	else {
+    	console.log('You\'re melting');
+    	warmerorcolder();
+    }
+}
+
+
+
+newgame();
+
+</script>
+</body>
